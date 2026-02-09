@@ -1,5 +1,5 @@
 name: MDCC MQTT to HA (Deep-Debug)
-version: 0.4.6
+version: 0.4.7
 slug: mdcc-mqtt-to-ha-deepdebug
 description: MQTT → Device/Entity Generator with Device Registry, Auto Categorization, TLS and Deep-Debug logging
 
