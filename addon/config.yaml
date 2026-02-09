@@ -1,18 +1,24 @@
-
 name: MDCC MQTT to HA (Deep-Debug)
-version: 0.4.0
+version: 0.4.1
 slug: mdcc-mqtt-to-ha-deepdebug
 description: MQTT → Device/Entity Generator with Device Registry, Auto Categorization, TLS and Deep-Debug logging
+
 arch:
   - aarch64
   - amd64
   - armv7
   - armhf
   - i386
+
 startup: services
 boot: auto
 init: false
 host_network: false
+
+# WICHTIG! API-Zugriff erlauben:
+homeassistant_api: true
+hassio_api: true
+
 options:
   mqtt_server: "mqtt://broker.example.com"
   mqtt_port: 8883
@@ -26,6 +32,7 @@ options:
   client_key: ""
   debug: true
   on_log_verbose: true
+
 schema:
   mqtt_server: str
   mqtt_port: int
