@@ -181,9 +181,31 @@ def on_message(client, userdata, msg):
 # --------------------------------------------------------
 # MQTT Client Setup (Callback API v2)
 # --------------------------------------------------------
-client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
+
+client = mqtt.Client(
+    mqtt.CallbackAPIVersion.VERSION2,
+    client_id=f"ha_mqtt_tls_{os.getpid()}",
+    protocol=mqtt.MQTTv311,
+    transport="tcp",
+)
 client.username_pw_set(MQTT_USER, MQTT_PASS)
 client.enable_logger()
+
+if TLS_ENABLED:
+    # Nutzt wahlweise eigene CA/Client-Zertifikate oder System-CAs
+    if CA_CERT or CLIENT_CERT or CLIENT_KEY:
+        client.tls_set(
+            ca_certs=CA_CERT,
+            certfile=CLIENT_CERT,
+            keyfile=CLIENT_KEY,
+            cert_reqs=ssl.CERT_REQUIRED,
+            tls_version=ssl.PROTOCOL_TLS,
+        )
+    else:
+        client.tls_set(tls_version=ssl.PROTOCOL_TLS)
+
+    if TLS_INSECURE:  # Nur für Tests!
+        client.tls_insecure_set(True)
 
 client.on_connect = on_connect
 client.on_message = on_message
