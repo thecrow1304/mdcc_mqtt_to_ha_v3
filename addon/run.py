@@ -125,9 +125,14 @@ def on_message(client, userdata, msg):
         print("Error:", e)
 
 
-client = mqtt.Client()
+
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.username_pw_set(MQTT_USER, MQTT_PASS)
 client.on_connect = on_connect
 client.on_message = on_message
 client.connect(MQTT_SERVER, MQTT_PORT, 60)
 client.loop_forever()
+client.tls_set()
+client.enable_logger()
+
+
