@@ -1,32 +1,35 @@
 
-# Dynamic MQTT Device Generator Add-on (Enhanced Version)
+# MDCC MQTT → Home Assistant (v3, Deep-Debug)
 
-Dieses Repository enthält die erweiterte Version des Home Assistant Add-ons:
-- Unterstützung für Home Assistant **Geräte-Registry**
-- Automatische **Sensor-Kategorisierung**
-- Dynamische Entitätserzeugung auf Basis des MQTT-Payloads
+Diese Version enthält erweiterte Debug-Funktionen:
+- Ausführliche Logs (`on_log`, `on_disconnect`, `on_subscribe`)
+- Reconnect-Strategie mit Backoff (`reconnect_delay_set`)
+- Keepalive 180, eindeutige Client-ID
+- TLS-Unterstützung (optional) inkl. `tls_insecure` (nur Test!)
+- Debug-Entitäten:
+  - `sensor.mqtt_debug_last` (letzte rohen MQTT-Payload)
+  - `sensor.mqtt_connection_status` (Status & letzte Fehlerursache)
 
-## Installation
-1. ZIP entpacken
-2. Ordner als GitHub-Repository veröffentlichen
-3. In Home Assistant unter *Add-On Store > Repositories* hinzufügen
-4. Add-on installieren, konfigurieren, starten
-
-## Konfiguration
+## Beispiel-Konfiguration
 ```yaml
-mqtt_server: "mqtt://example.com"
-mqtt_port: 1883
-mqtt_user: "user"
-mqtt_password: "pass"
+mqtt_server: "mqtt://broker.example.com"
+mqtt_port: 8883
+mqtt_user: "mqttuser"
+mqtt_password: "mqttpass"
 mqtt_topic: "physec/iotree-magdeburg-city-com/iot-platform/#"
+
+# TLS
+tls_enabled: true
+ca_cert: "/ssl/ca.crt"      # optional, bei privater CA
+client_cert: ""             # optional
+client_key: ""              # optional
+tls_insecure: false          # nur für Tests!
+
+# Debug
+debug: true
+on_log_verbose: true         # schaltet paho interne Logs ein
 ```
 
-## Funktionen
-- Automatische Gerätekreation via HA Device Registry
-- Automatische Sensorerstellung pro Payload-Feld
-- Automatische device_class basierend auf Einheit/Feld
-- Komplette MQTT Integration
-- Vollautomatisch für jede Art JSON-Datenstruktur
-
-## Lizenz
-MIT
+## Hinweise
+- Bei TLS in der Regel Port **8883** verwenden.
+- Zertifikate im HA-Verzeichnis **/ssl** ablegen und per Pfad verweisen.
