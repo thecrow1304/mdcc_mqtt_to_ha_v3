@@ -1,0 +1,21 @@
+name: Dynamic MQTT Device Generator
+version: 0.2.0
+description: Enhanced MQTT → Device → Entity generator for Home Assistant
+slug: dynamic-mqtt-generator
+authors:
+  - Fabian Jahnel
+startup: services
+init: false
+boot: auto
+options:
+  mqtt_server: "mqtt://example.com"
+  mqtt_port: 1883
+  mqtt_user: "user"
+  mqtt_password: "pass"
+  mqtt_topic: "physec/iotree-magdeburg-city-com/iot-platform/#"
+schema:
+  mqtt_server: str
+  mqtt_port: int
+  mqtt_user: str
+  mqtt_password: str
+  mqtt_topic: str

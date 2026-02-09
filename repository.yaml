@@ -1,0 +1,9 @@
+name: "mdcc_mqtt_to_ha"
+url: "https://github.com/thecrow1304/mdcc_mqtt_to_ha_v3"
+maintainer: "Fabian Jahnel"
+description: "Ein Home Assistant Add-on zur dynamischen Erstellung von Geräten & Sensoren basierend auf MQTT-Daten."
+addons:
+  dynamic-mqtt-generator:
+    repository: "mdcc_mqtt_to_ha_v3"
+    name: "mdcc_mqtt_to_ha""
+    description: "Automatische Erstellung von Geräten & Entitäten aus komplexen MQTT JSON Payloads."
