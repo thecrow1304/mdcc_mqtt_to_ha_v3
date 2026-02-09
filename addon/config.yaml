@@ -1,5 +1,5 @@
 name: MDCC MQTT to HA
-version: 0.2.1
+version: 0.2.2
 slug: mdcc-mqtt-to-ha
 description: Enhanced MQTT → Device → Entity generator with device registry & auto categorization
 arch:
@@ -13,9 +13,9 @@ boot: auto
 init: false
 host_network: false
 options:
-  mqtt_server: "mqtt://example.com"
-  mqtt_port: 1883
-  mqtt_user: "user"
+  mqtt_server: "mqtt.mdcc.iotree.de"
+  mqtt_port: 8883
+  mqtt_user: "iotree-mdcc"
   mqtt_password: "pass"
   mqtt_topic: "physec/iotree-magdeburg-city-com/iot-platform/#"
 schema:
