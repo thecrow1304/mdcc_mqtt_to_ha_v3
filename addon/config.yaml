@@ -1,5 +1,5 @@
 name: MDCC MQTT to HA
-version: 0.2.4
+version: 0.2.5
 slug: mdcc-mqtt-to-ha
 description: Enhanced MQTT → Device → Entity generator with device registry & auto categorization
 arch:
